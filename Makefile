@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+         #
+#    By: euyana-b ∫ <euyana-b@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/14 14:12:39 by klever            #+#    #+#              #
-#    Updated: 2020/11/18 14:58:13 by euyana-b         ###   ########.fr        #
+#    Updated: 2020/11/18 18:38:57 by euyana-b ∫       ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 #Cambiar el nombre........****
 NAME	= 	cub3D
 
-SRC		= 	src/cub3d.c src/check.c src/exit.c src/utils.c
+SRC		= 	src/cub3d.c src/utils.c
 
 GNL		=	gnl/get_next_line.c gnl/get_next_line_utils.c
 

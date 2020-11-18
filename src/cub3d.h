@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: euyana-b ∫ <euyana-b@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/11/18 16:55:46 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/11/18 18:38:59 by euyana-b ∫       ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,10 +147,6 @@ typedef struct	s_all
 	t_stk			*stk;
 }				t_all;
 
-//check.c
-int		arg_checker(t_game *game, int argc, char **argv);
-//exit.c
-void	err_handler(t_game *game, char *str);
 //utils.c
 int		ft_strcmp(const char *s1, const char *s2);
 
