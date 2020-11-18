@@ -6,7 +6,7 @@
 #    By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/14 14:12:39 by klever            #+#    #+#              #
-#    Updated: 2020/11/18 14:34:03 by euyana-b         ###   ########.fr        #
+#    Updated: 2020/11/18 14:58:13 by euyana-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ MLX = minilibx
 
 LXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
-HEADER = cub3d.h
+HEADER = src/cub3d.h
 
 all: $(NAME)
 
