@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/02 13:23:22 by euyana-b         ###   ########.fr       */
+/*   Created: 2019/09/10 17:46:15 by euyana-b          #+#    #+#             */
+/*   Updated: 2019/12/03 12:13:48 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <math.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdint.h>
-# include "../gnl/get_next_line.h"
-# include "../libft/libft.h"
-# include "../minilibx/mlx.h"
+#include "libft.h"
 
+size_t	ft_strlen(const char *str)
+{
+	size_t i;
 
-
-#endif
+	i = 0;
+	while (*str++ != '\0')
+		i++;
+	return (i);
+}

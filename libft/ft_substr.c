@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/02 13:23:22 by euyana-b         ###   ########.fr       */
+/*   Created: 2019/11/30 21:29:10 by erick             #+#    #+#             */
+/*   Updated: 2019/12/18 15:52:19 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <math.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdint.h>
-# include "../gnl/get_next_line.h"
-# include "../libft/libft.h"
-# include "../minilibx/mlx.h"
+#include "libft.h"
 
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*mem;
+	int		i;
 
-
-#endif
+	i = 0;
+	mem = NULL;
+	if (!(s))
+		return (mem);
+	if (ft_strlen(s) < start)
+		return (ft_strdup(""));
+	if (!(mem = malloc(len + 1 * sizeof(char))))
+		return (mem);
+	if (start >= 0)
+	{
+		while (len-- && s[i])
+		{
+			*(mem + i) = *(s + start + i);
+			i++;
+		}
+	}
+	mem[i] = '\0';
+	return (mem);
+}

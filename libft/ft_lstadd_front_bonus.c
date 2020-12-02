@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erick <erick@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/02 13:23:22 by euyana-b         ###   ########.fr       */
+/*   Created: 2019/12/01 12:11:52 by erick             #+#    #+#             */
+/*   Updated: 2019/12/03 12:06:53 by erick            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <math.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdint.h>
-# include "../gnl/get_next_line.h"
-# include "../libft/libft.h"
-# include "../minilibx/mlx.h"
+#include "libft.h"
 
-
-
-#endif
+void	ft_lstadd_front(t_list **alst, t_list *new)
+{
+	if (alst && new)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
+}

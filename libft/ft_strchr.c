@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/02 13:23:22 by euyana-b         ###   ########.fr       */
+/*   Created: 2019/11/05 14:57:57 by euyana-b          #+#    #+#             */
+/*   Updated: 2019/12/17 11:49:43 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <math.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdint.h>
-# include "../gnl/get_next_line.h"
-# include "../libft/libft.h"
-# include "../minilibx/mlx.h"
+char	*ft_strchr(const char *s, int c)
+{
+	char *straux;
 
-
-
-#endif
+	straux = (char *)s;
+	while (*straux != c)
+	{
+		if (*straux == '\0')
+			return (0);
+		straux++;
+	}
+	return (straux);
+}

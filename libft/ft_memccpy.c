@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/02 13:23:22 by euyana-b         ###   ########.fr       */
+/*   Created: 2019/11/09 17:10:57 by euyana-b          #+#    #+#             */
+/*   Updated: 2019/12/17 11:36:09 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <math.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdint.h>
-# include "../gnl/get_next_line.h"
-# include "../libft/libft.h"
-# include "../minilibx/mlx.h"
+#include "libft.h"
 
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+{
+	unsigned char	*dest;
+	unsigned char	*sour;
 
-
-#endif
+	dest = (unsigned char *)dst;
+	sour = (unsigned char *)src;
+	while (n--)
+	{
+		if (*sour == (unsigned char)c)
+		{
+			*dest++ = *sour++;
+			return (dest++);
+		}
+		*dest++ = *sour++;
+	}
+	return (0);
+}

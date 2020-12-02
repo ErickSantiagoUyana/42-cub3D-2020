@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/02 13:23:22 by euyana-b         ###   ########.fr       */
+/*   Created: 2019/11/12 20:05:45 by erickuyana        #+#    #+#             */
+/*   Updated: 2019/12/17 12:16:10 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <math.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdint.h>
-# include "../gnl/get_next_line.h"
-# include "../libft/libft.h"
-# include "../minilibx/mlx.h"
+#include "libft.h"
 
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			i;
 
-
-#endif
+	str1 = (unsigned char*)s1;
+	str2 = (unsigned char*)s2;
+	i = 0;
+	while (str1[i] == str2[i] && i < (n - 1))
+		i++;
+	if (n)
+		return (*((unsigned char *)str1 + i) - *((unsigned char *)str2 + i));
+	return (0);
+}

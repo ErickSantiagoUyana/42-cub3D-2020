@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbarahon <kbarahon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/07 11:24:29 by kbarahon          #+#    #+#             */
-/*   Updated: 2020/07/08 09:09:03 by kbarahon         ###   ########.fr       */
+/*   Created: 2020/12/02 13:25:01 by euyana-b          #+#    #+#             */
+/*   Updated: 2020/12/02 13:25:31 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "get_next_line_bonus.h"
 
