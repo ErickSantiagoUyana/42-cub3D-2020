@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 13:36:30 by klever            #+#    #+#             */
-/*   Updated: 2020/12/11 21:55:46 by euyana-b         ###   ########.fr       */
+/*   U n_datesd: 2020/12/12 18:09:26 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_file
 	int C[3];
 	int map_y;
 	int map_x;
-	int date;
+	int n_dates;
 	char **tab;
 }File;
 
@@ -116,7 +116,9 @@ void type (File *file, char * line)
 			aux = t_floor_ceiling(file, line,'F');
 	else if (line[0] == 'C')
 			aux = t_floor_ceiling(file, line,'C');
-	file->date += aux;
+
+	file->n_dates += aux;
+	
 }
 int read_map(File *file, char * line)
 {
@@ -124,19 +126,21 @@ int read_map(File *file, char * line)
 	int		j;
 
 	j = 0;
-	write(1,"L",1);
 	if (!(tmp = malloc(sizeof(char *) * (ft_strlen(line) + 1))))
 		return (0);
-	while (*line != '\0')
+	
+	while (line[j] != '\0')
 	{
 		tmp[j] = &line[j];
+		//write(1,&line[j],1);
 		j++;
 	}
-	file->tab[file->map_y] = *tmp;
+	write(1,"\n",1);
+	file->tab[0] = *tmp;
 	free(tmp);
-	file->tab[file->map_y + 1] = NULL;
-	file->map_y++;
-	printf("\n%s",file->tab[file->map_y]);
+	//file->tab[file->map_y + 1] = NULL;
+	//file->map_y++;
+	
 	return (1);
 
 }
@@ -147,34 +151,30 @@ int read_file_cub(File *file, char *f_cub)
 
 	if ((fd = open(f_cub, O_RDONLY)) > 0)
 	{
-		//while (get_next_line(fd,&line) != 0)
-		//{
-
-
-		//	if(ft_strlen(line) > 0)
-		//	{
-		//		type(file, line);
-		//		if (file->date == 8)
-		//			break;
-		//	}
-		//}
-
 		while (get_next_line(fd,&line) != 0)
 		{
-
 			if(ft_strlen(line) > 0)
 			{
-
-				read_map(file, line);
-				printf("\n%s", line);
-			}
-			if (file->date == 8)
+				type(file, line);
+				if (file->n_dates == 8)
 					break;
+			}
+		}
+		while (get_next_line(fd,&line) != 0)
+		{
+			if(ft_strlen(line) > 0)
+			{
+				//read_map(file, line);
+				//printf("\n%s", line);
+			}
+
 		}
 	}
 	else
 		fd = -1;
 	close(fd);
+	//printf("(\n%s)",file->tab[0]);
+
 	return (fd);
 }
 
@@ -212,6 +212,19 @@ int		main(int ac, char **av)
 	else
 		printf("Error %i", ac);
 
+	printf("numero \n%i",file.n_dates);
+
+
+	char	**tmp;
+	int		j;
+
+	j = 0;
+	if (!(tmp = malloc(sizeof(char *) * (10 + 1))))
+		return (0);
+	tmp[0] = (char*)malloc(10+1);
+
+	tmp[0][0] = 'a';
+	write(1,&tmp[0][0],1);
 
 	return (0);
 }
