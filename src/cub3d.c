@@ -126,21 +126,27 @@ int read_map(File *file, char * line)
 	int		j;
 
 	j = 0;
-	if (!(tmp = malloc(sizeof(char *) * (ft_strlen(line) + 1))))
+	if (!(tmp = malloc(sizeof(char *) * (file->map_y + 1))))
 		return (0);
 	
-	while (line[j] != '\0')
+	if (file->map_y != 0)
 	{
-		tmp[j] = &line[j];
-		//write(1,&line[j],1);
-		j++;
+		write(1,"k",2);
+		while (j < file->map_y)
+		{
+			tmp[j] = file->tab[j];
+			j++;
+		}
 	}
-	write(1,"\n",1);
-	file->tab[0] = *tmp;
+	tmp[j] = line;
+
+	//free(file->tab);
+	file->tab = tmp;
+	//free(tmp);
+
+	file->map_y += 1;
+	file->tab[file->map_y] = NULL;
 	free(tmp);
-	//file->tab[file->map_y + 1] = NULL;
-	//file->map_y++;
-	
 	return (1);
 
 }
@@ -160,15 +166,15 @@ int read_file_cub(File *file, char *f_cub)
 					break;
 			}
 		}
-		while (get_next_line(fd,&line) != 0)
-		{
-			if(ft_strlen(line) > 0)
-			{
-				//read_map(file, line);
-				//printf("\n%s", line);
-			}
+	
+			file->map_y = 0;
+			get_next_line(fd,&line);
+			read_map(file, line);
+			get_next_line(fd,&line);
+			read_map(file, line);
 
-		}
+
+
 	}
 	else
 		fd = -1;
@@ -211,20 +217,13 @@ int		main(int ac, char **av)
 	}
 	else
 		printf("Error %i", ac);
+	printf(" \n %i", file.map_y);	
+	aux = 0;
+	printf(" \n %s", file.tab[0]);	
+		printf(" \n %s", file.tab[1]);	
 
-	printf("numero \n%i",file.n_dates);
-
-
-	char	**tmp;
-	int		j;
-
-	j = 0;
-	if (!(tmp = malloc(sizeof(char *) * (10 + 1))))
-		return (0);
-	tmp[0] = (char*)malloc(10+1);
-
-	tmp[0][0] = 'a';
-	write(1,&tmp[0][0],1);
+	//write(1,"l=",2);
+	//write(1,file.tab[0][0],1);
 
 	return (0);
 }
