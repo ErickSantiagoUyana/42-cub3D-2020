@@ -1,0 +1,152 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_file.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/16 16:47:48 by euyana-b          #+#    #+#             */
+/*   Updated: 2020/12/16 17:05:10 by euyana-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int		t_floor_ceiling(File *file, char *line, char type, int k)
+{
+	int i;
+	int aux;
+
+	aux = 0;
+	i = 0;
+	while (*line != '\0')
+	{
+		if (ft_isdigit(*line) || *line == '-')
+		{
+			aux = ft_atoi(line);
+			if (aux > 0 && i < 4)
+			{
+				if (type == 'F')
+					file->F[i] = ft_atoi(line);
+				else if (type == 'C')
+					file->C[i] = ft_atoi(line);
+				i++;
+			}
+			else
+				return (-5);
+			while (*line != ',' && *line != '\0')
+				line++;
+		}
+		else
+			line++;
+	}
+	file->flags[k] = 1;
+	return (0);
+}
+
+int		t_sprites(File *file, char *line, char type, int k)
+{
+	while (*line != '\0')
+	{
+		if (*line == '.')
+		{
+			if (type == 'N')
+				file->NO = line;
+			else if (type == 'S')
+				file->SO = line;
+			else if (type == 'W')
+				file->WE = line;
+			else if (type == 'E')
+				file->EA = line;
+			else if (type == 's')
+				file->S = line;
+			file->flags[k] = 1;
+			return (0);
+		}
+		line++;
+	}
+	return (-4);
+}
+
+int		t_resolution(File *file, char *line, int k)
+{
+	int i;
+	int aux;
+
+	aux = 0;
+	i = 0;
+	while (*line != '\0')
+	{
+		if (ft_isdigit(*line) || *line == '-')
+		{
+			aux = ft_atoi(line);
+			if (aux > 0 && i < 2)
+			{
+				file->R[i] = aux;
+				i++;
+			}
+			else
+				return (-3);
+			while (*line != ' ' && *line != '\0')
+				line++;
+		}
+		else
+			line++;
+	}
+	if ((file->R[0] * file->R[1]) > 0)
+		file->flags[k] = 1;
+	else
+		return (-3);
+	return (0);
+}
+
+int		type(File *file, char *line)
+{
+	int aux;
+
+	aux = 0;
+	while (*line != '\0')
+	{
+		if (line[0] == 'R' && file->flags[0] == 0)
+			return (t_resolution(file, line, 0));
+		else if (line[0] == 'N' && line[1] == 'O' && file->flags[1] == 0)
+			return (t_sprites(file, line, 'N', 1));
+		else if (line[0] == 'S' && line[1] == 'O' && file->flags[2] == 0)
+			return (t_sprites(file, line, 'S', 2));
+		else if (line[0] == 'W' && line[1] == 'E' && file->flags[3] == 0)
+			return (t_sprites(file, line, 'W', 3));
+		else if (line[0] == 'E' && line[1] == 'A' && file->flags[4] == 0)
+			return (t_sprites(file, line, 'E', 4));
+		else if (line[0] == 'S' && file->flags[5] == 0)
+			return (t_sprites(file, line, 's', 5));
+		else if (line[0] == 'F' && file->flags[6] == 0)
+			return (t_floor_ceiling(file, line, 'F', 6));
+		else if (line[0] == 'C' && file->flags[7] == 0)
+			return (t_floor_ceiling(file, line, 'C', 7));
+		line++;
+	}
+	return (-2);
+}
+
+int		read_file_cub(File *file, char *f_cub)
+{
+	int		fd;
+	int		aux;
+	char	*line;
+
+	aux = -1;
+	if ((fd = open(f_cub, O_RDONLY)) > 0)
+	{
+		while (get_next_line(fd, &line) != 0)
+		{
+			if (ft_strlen(line) > 0 && sum_flags(file) != 8)
+			{
+				aux = type(file, line);
+				if (aux != 0)
+					return (aux);
+			}
+		}
+	}
+	close(fd);
+	return (aux);
+}

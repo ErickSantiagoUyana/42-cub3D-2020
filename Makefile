@@ -6,18 +6,18 @@
 #    By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/14 14:12:39 by klever            #+#    #+#              #
-#    Updated: 2020/12/02 20:05:22 by euyana-b         ###   ########.fr        #
+#    Updated: 2020/12/17 18:57:01 by euyana-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Cambiar el nombre........****
 NAME	=	cub3D
 
-SRC		=	src/cub3d.c src/utils.c
+SRC		=	src/cub3d.c src/utils.c src/utils_read_file.c src/read_file.c
 
 GNL		=	gnl/get_next_line.c gnl/get_next_line_utils.c
 
-LIBFT	=	libft/ft_atoi.c libft/ft_isdigit.c 
+LIBFT	=	libft/ft_atoi.c libft/ft_isdigit.c libft/ft_strncmp.c
 
 OBJ	= 	$(SRC:.c=.o) $(GNL:.c=.o) $(LIBFT:.c=.o)
 

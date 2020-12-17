@@ -1,14 +1,22 @@
-   R 		800       90000
-NO ./textures/brick.xpm
-SO ./textures/blue.xpm
-WE ./textures/wood.xpm
-        EA ./textures/grey.xpm
-        S ./textures/barrel.xpm
-        F 13    , 14,   100
-        C 22 , 23        ,10
+            R        8090000
+
+        NO        ./textures/brick.xpm
+
+        SO                 ./textures/blue.xpm
+
+          WE         ./textures/wood.xpm
+
+        EA       ./textures/grey.xpm
+
+        S          ./textures/barrel.xpm
+
+            F       12      , 14,           102323,12
+        C       22 , 23              ,10
+        C       22 , 23              ,10
+
 111111111111111111111111111111111
-211111111W00000000110000000000001
-311111111011000001110000002000001
+111111111W00000000110000000000001
+111111111011000001110000002000001
 111111111001000000000000000000001
 111111111011000001110000000000001
 100000000011000001110111111111111
