@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 16:48:30 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/16 16:52:04 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/18 17:04:42 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ int		sum_flags(File *file)
 	int i;
 	int aux;
 
-	i = -1;
+	i = 0;
 	aux = 0;
-	while (i++ < 8)
+	while (i < 8)
+	{
 		aux += file->flags[i];
+		i++;
+	}
 	return (aux);
 }
 
@@ -47,6 +50,7 @@ void	ini_struct_file(File *file)
 	file->WE = NULL;
 	file->EA = NULL;
 	file->S = NULL;
+	file->tab = NULL;
 }
 
 void	print_file(File *file)
@@ -64,4 +68,16 @@ void	print_file(File *file)
 	printf("\nWE %s", file->WE);
 	printf("\nEA %s", file->EA);
 	printf("\nS %s", file->S);
+}
+
+void	print_tab(File *file)
+{
+	int i;
+
+	i = 0;
+	while (i < file->map_y)
+	{
+		printf("\n%s", file->tab[i]);
+		i++;
+	}
 }

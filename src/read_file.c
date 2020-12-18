@@ -6,11 +6,30 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 16:47:48 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/16 17:05:10 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/18 17:23:29 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int		read_map(File *file, char *line)
+{
+	char	**tmp;
+	int		j;
+
+	j = -1;
+	if (!(tmp = malloc(sizeof(char *) * (file->map_y + 2))))
+		return (-6);
+	while (++j < file->map_y)
+		tmp[j] = file->tab[j];
+	tmp[file->map_y] = line;
+	tmp[file->map_y + 1] = NULL;
+	if (file->map_y > 0)
+		free(file->tab);
+	file->tab = tmp;
+	file->map_y++;
+	return (1);
+}
 
 int		t_floor_ceiling(File *file, char *line, char type, int k)
 {
@@ -24,7 +43,7 @@ int		t_floor_ceiling(File *file, char *line, char type, int k)
 		if (ft_isdigit(*line) || *line == '-')
 		{
 			aux = ft_atoi(line);
-			if (aux > 0 && i < 4)
+			if ((aux >= 0 && aux <= 255) && i < 4)
 			{
 				if (type == 'F')
 					file->F[i] = ft_atoi(line);
@@ -41,7 +60,7 @@ int		t_floor_ceiling(File *file, char *line, char type, int k)
 			line++;
 	}
 	file->flags[k] = 1;
-	return (0);
+	return (1);
 }
 
 int		t_sprites(File *file, char *line, char type, int k)
@@ -61,7 +80,7 @@ int		t_sprites(File *file, char *line, char type, int k)
 			else if (type == 's')
 				file->S = line;
 			file->flags[k] = 1;
-			return (0);
+			return (1);
 		}
 		line++;
 	}
@@ -97,7 +116,7 @@ int		t_resolution(File *file, char *line, int k)
 		file->flags[k] = 1;
 	else
 		return (-3);
-	return (0);
+	return (1);
 }
 
 int		type(File *file, char *line)
@@ -139,11 +158,14 @@ int		read_file_cub(File *file, char *f_cub)
 	{
 		while (get_next_line(fd, &line) != 0)
 		{
-			if (ft_strlen(line) > 0 && sum_flags(file) != 8)
+			if (ft_strlen(line) > 0)
 			{
-				aux = type(file, line);
+				if (sum_flags(file) != 8)
+					aux = type(file, line);
+				else
+					aux = read_map(file, line);
 				if (aux != 0)
-					return (aux);
+						return (aux);
 			}
 		}
 	}

@@ -6,50 +6,60 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 13:36:30 by klever            #+#    #+#             */
-/*   Updated: 2020/12/16 17:06:51 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/18 20:20:23 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*int		read_map(File *file, char * line)
-{
-	char	**tmp;
-	int		j;
+void	print_tab(File *file);
+void	print_file(File *file);
 
-	j = 0;
-	write(1,"L",1);
-	if (!(tmp = malloc(sizeof(char *) * (ft_strlen(line) + 1))))
-		return (0);
-	while (*line != '\0')
+int		ft_key(int key,Window *window)
+{
+	
+	if (key == T_ESC)
 	{
-		tmp[j] = &line[j];
-		j++;
+		mlx_destroy_window(window->mlx, window->win);
+		exit(0);
 	}
-	file->tab[file->map_y] = *tmp;
-	free(tmp);
-	file->tab[file->map_y + 1] = NULL;
-	file->map_y++;
-	printf("\n%s",file->tab[file->map_y]);
 	return (1);
-}*/
+}
 
 int		main(int ac, char **av)
 {
 	File file;
+	Window window;
+
 	int aux;
+
+
 	ini_struct_file(&file);
 	aux = read_file_cub(&file, av[1]);
-	print_file(&file);
-	printf("\nValor = %i", aux);
-	printf("\nAC = %i", ac);
+	print_errors_file(aux);
+	printf("\nValor de ac %i",ac);
+	//print_file(&file);
+	//print_tab(&file);
+	
+	window.mlx = mlx_init();
+	window.win = mlx_new_window(window.mlx, file.R[0], file.R[1], "cub3D");
 
-	int i;
-	i = 0;
-	while(i < 8)
-	{
-		printf("(%i, %i)",file.flags[i], i);
-		i++;
-	}
+	mlx_key_hook(window.win,ft_key, &window);
+	
+
+	
+	void *img;
+	int     img_width;
+    int     img_height;
+	 if((img = mlx_png_file_to_image(window.mlx, file.SO, &img_width, &img_height)))
+	 	ft_putstr_fd("Hola", 1);
+
+	//while (a < 1)
+	//{
+	//mlx_put_image_to_window(window.mlx, window.win,img,0,0);
+	//}
+	mlx_loop(window.mlx);
+	
+
 	return (0);
 }
