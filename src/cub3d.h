@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/18 17:41:07 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/21 18:11:51 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 # define T_LEFT 123
 # define T_RIGHT 124
 
+# define RED 0x00FF0000
+# define GREEN 0x0000FF00
+# define BLUE 0x000000FF
+
 typedef struct s_file
 {
 	char *NO;
@@ -52,6 +56,13 @@ typedef struct  s_window
 	void *mlx;
 	void *win;
 }Window;
+
+typedef struct	s_img
+{
+	void *ptr;
+	unsigned int *adr;
+
+}Img;
 
 int		sum_flags(File *file);
 void	ini_struct_file(File *file);

@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 16:47:48 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/18 17:23:29 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/18 21:10:41 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ int		read_file_cub(File *file, char *f_cub)
 					aux = type(file, line);
 				else
 					aux = read_map(file, line);
-				if (aux != 0)
+				if (aux < 0)
 						return (aux);
 			}
 		}
