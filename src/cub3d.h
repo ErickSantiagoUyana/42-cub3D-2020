@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/21 18:11:51 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/27 00:40:25 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,56 @@ typedef struct	s_img
 {
 	void *ptr;
 	unsigned int *adr;
+	int bpp;
+	int sl;
+	int end;
 
 }Img;
+
+typedef struct  s_screen
+{
+	int width;
+	int height;
+	int halfWidth;
+	int halfHeight;
+}Screen;
+
+typedef struct s_rayCasting
+{
+	double incrementAngle;
+	int precision;
+	int delay;
+	int rayCount;
+	double ray_x;
+	double ray_y;
+	double rayCos;
+	double raySin;
+	int wall;
+	double distance;
+	int wallHeight;
+	double rayAngle;
+}RayCasting;
+
+typedef struct s_player
+{
+	double fov;
+	double halfFov;
+	double x;
+	double y;
+	double angle;
+	double movement;
+
+}Player;
+
+typedef struct s_cubed
+{
+	Player player;
+	RayCasting rayC;
+	Screen screen;
+	Img img;
+	Window window;
+	File file;
+}Cubed;
 
 int		sum_flags(File *file);
 void	ini_struct_file(File *file);
@@ -73,6 +121,9 @@ int		t_resolution(File *file, char *line, int k);
 int		t_sprites(File *file, char *line, char type, int k);
 int		t_floor_ceiling(File *file, char *line, char type, int k);
 void	print_errors_file(int i);
+
+void rayCasting(Cubed *cubed);
+double  degreeToRadians(double degree);
 
 
 #endif

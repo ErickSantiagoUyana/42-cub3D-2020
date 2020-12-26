@@ -6,14 +6,14 @@
 #    By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/14 14:12:39 by klever            #+#    #+#              #
-#    Updated: 2020/12/18 12:13:12 by euyana-b         ###   ########.fr        #
+#    Updated: 2020/12/27 00:31:01 by euyana-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Cambiar el nombre........****
 NAME	=	cub3D
 
-SRC		=	src/cub3d.c src/utils.c src/utils_read_file.c src/read_file.c src/print_errors.c
+SRC		=	src/cub3d.c src/utils.c src/utils_read_file.c src/read_file.c src/print_errors.c src/rayCasting.c
 
 GNL		=	gnl/get_next_line.c gnl/get_next_line_utils.c
 
