@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 22:59:59 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/27 00:43:15 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/27 14:39:36 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ int		create_trgb(int t, int r, int g, int b)
 }
 void rayCasting(Cubed *cubed)
 {
+
+cubed->rayC.rayCount = 0;
+cubed->rayC.rayAngle = cubed->player.angle - cubed->player.halfFov;
 
 while(cubed->rayC.rayCount < cubed->file.R[0])
 	{
@@ -81,4 +84,7 @@ while(cubed->rayC.rayCount < cubed->file.R[0])
 		cubed->rayC.rayAngle += cubed->rayC.incrementAngle;
 		cubed->rayC.rayCount++;
 	}
+	mlx_put_image_to_window(cubed->window.mlx, cubed->window.win , cubed->img.ptr , 0, 0);
+	//free(cubed->img.ptr);
+	//free(cubed->img.adr);
 }
