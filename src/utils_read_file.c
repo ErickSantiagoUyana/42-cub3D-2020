@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 16:48:30 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/18 17:04:42 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/28 21:09:19 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		sum_flags(File *file)
 	return (aux);
 }
 
-void	ini_struct_file(File *file)
+void	init_struct_file(File *file)
 {
 	int i;
 

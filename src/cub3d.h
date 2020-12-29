@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/27 00:40:25 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/28 21:38:37 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ typedef struct s_cubed
 }Cubed;
 
 int		sum_flags(File *file);
-void	ini_struct_file(File *file);
+void	init_struct_file(File *file);
 
 int		read_file_cub(File *file, char *f_cub);
 int		type(File *file, char *line);
@@ -124,6 +124,8 @@ void	print_errors_file(int i);
 
 void rayCasting(Cubed *cubed);
 double  degreeToRadians(double degree);
+void ft_aux(Cubed *cubed);
+
 
 
 #endif
