@@ -6,13 +6,13 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 16:48:30 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/28 21:09:19 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/29 20:21:31 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		sum_flags(File *file)
+int		sum_flags(t_file *file)
 {
 	int i;
 	int aux;
@@ -27,33 +27,8 @@ int		sum_flags(File *file)
 	return (aux);
 }
 
-void	init_struct_file(File *file)
-{
-	int i;
 
-	i = -1;
-	file->map_y = 0;
-	file->map_y = 0;
-	while (i < 8)
-		file->flags[i++] = 0;
-	i = 0;
-	while (i < 3)
-	{
-		file->F[i] = 0;
-		file->C[i] = 0;
-		i++;
-	}
-	file->R[0] = 0;
-	file->R[1] = 0;
-	file->NO = NULL;
-	file->SO = NULL;
-	file->WE = NULL;
-	file->EA = NULL;
-	file->S = NULL;
-	file->tab = NULL;
-}
-
-void	print_file(File *file)
+void	print_file(t_file *file)
 {
 	printf("\nR %i", file->R[0]);
 	printf("\nR %i", file->R[1]);
@@ -70,7 +45,7 @@ void	print_file(File *file)
 	printf("\nS %s", file->S);
 }
 
-void	print_tab(File *file)
+void	print_tab(t_file *file)
 {
 	int i;
 

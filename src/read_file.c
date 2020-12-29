@@ -6,18 +6,19 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 16:47:48 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/18 21:10:41 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/29 21:18:01 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		read_map(File *file, char *line)
+int		read_map(t_file *file, char *line)
 {
 	char	**tmp;
 	int		j;
 
 	j = -1;
+	tmp = NULL;
 	if (!(tmp = malloc(sizeof(char *) * (file->map_y + 2))))
 		return (-6);
 	while (++j < file->map_y)
@@ -31,7 +32,7 @@ int		read_map(File *file, char *line)
 	return (1);
 }
 
-int		t_floor_ceiling(File *file, char *line, char type, int k)
+int		t_floor_ceiling(t_file *file, char *line, char type, int k)
 {
 	int i;
 	int aux;
@@ -63,7 +64,7 @@ int		t_floor_ceiling(File *file, char *line, char type, int k)
 	return (1);
 }
 
-int		t_sprites(File *file, char *line, char type, int k)
+int		t_sprites(t_file *file, char *line, char type, int k)
 {
 	while (*line != '\0')
 	{
@@ -87,7 +88,7 @@ int		t_sprites(File *file, char *line, char type, int k)
 	return (-4);
 }
 
-int		t_resolution(File *file, char *line, int k)
+int		t_resolution(t_file *file, char *line, int k)
 {
 	int i;
 	int aux;
@@ -119,7 +120,7 @@ int		t_resolution(File *file, char *line, int k)
 	return (1);
 }
 
-int		type(File *file, char *line)
+int		type(t_file *file, char *line)
 {
 	int aux;
 
@@ -147,13 +148,14 @@ int		type(File *file, char *line)
 	return (-2);
 }
 
-int		read_file_cub(File *file, char *f_cub)
+int		read_file_cub(t_file *file, char *f_cub)
 {
 	int		fd;
 	int		aux;
 	char	*line;
 
 	aux = -1;
+	line = NULL;
 	if ((fd = open(f_cub, O_RDONLY)) > 0)
 	{
 		while (get_next_line(fd, &line) != 0)
@@ -169,6 +171,7 @@ int		read_file_cub(File *file, char *f_cub)
 			}
 		}
 	}
+	//free(line);
 	close(fd);
 	return (aux);
 }

@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/28 21:38:37 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/29 22:03:27 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,82 +49,80 @@ typedef struct s_file
 	int map_y;
 	int map_x;
 	char **tab;
-}File;
+}t_file;
 
 typedef struct  s_window
 {
 	void *mlx;
 	void *win;
-}Window;
+}t_window;
 
 typedef struct	s_img
 {
 	void *ptr;
 	unsigned int *adr;
-	int bpp;
-	int sl;
-	int end;
-
-}Img;
+	
+}t_img;
 
 typedef struct  s_screen
 {
-	int width;
-	int height;
-	int halfWidth;
-	int halfHeight;
-}Screen;
+	int w;
+	int h;
+	int h_w;
+	int h_h;
+	int co_c;
+	int co_f;
+}t_screen;
 
-typedef struct s_rayCasting
+typedef struct s_r_casting
 {
-	double incrementAngle;
-	int precision;
+	double i_ang;
+	int pre;
 	int delay;
-	int rayCount;
-	double ray_x;
-	double ray_y;
-	double rayCos;
-	double raySin;
-	int wall;
-	double distance;
-	int wallHeight;
-	double rayAngle;
-}RayCasting;
+	int r_count;
+	double r_x;
+	double r_y;
+	double r_c;
+	double r_s;
+	double dis;
+	int w_h;
+	double r_a;
+}t_r_casting;
 
 typedef struct s_player
 {
 	double fov;
-	double halfFov;
+	double h_fov;
 	double x;
 	double y;
 	double angle;
-	double movement;
+	double move;
 
-}Player;
+}t_player;
 
 typedef struct s_cubed
 {
-	Player player;
-	RayCasting rayC;
-	Screen screen;
-	Img img;
-	Window window;
-	File file;
-}Cubed;
+	t_player player;
+	t_r_casting rayC;
+	t_screen screen;
+	t_img img;
+	t_window win;
+	t_file f;
+}t_cubed;
 
-int		sum_flags(File *file);
-void	init_struct_file(File *file);
-
-int		read_file_cub(File *file, char *f_cub);
-int		type(File *file, char *line);
-int		t_resolution(File *file, char *line, int k);
-int		t_sprites(File *file, char *line, char type, int k);
-int		t_floor_ceiling(File *file, char *line, char type, int k);
+int		sum_flags(t_file *file);
+void	init_structs(t_cubed *c3d);
+int		read_file_cub(t_file *file, char *f_cub);
+//int		type(t_file *file, char *line);
+//int		t_resolution(t_file *file, char *line, int k);
+//int		t_sprites(t_file *file, char *line, char type, int k);
+//int		t_floor_ceiling(t_file *file, char *line, char type, int k);
 void	print_errors_file(int i);
+void	screen(t_cubed *cubed);
+void	move(t_cubed *cubed);
+int		keys(int key,t_cubed *cubed);
+double  to_radians(double degree);
 
-void rayCasting(Cubed *cubed);
-double  degreeToRadians(double degree);
-void ft_aux(Cubed *cubed);
 
 
 
