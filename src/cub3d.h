@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/29 22:03:27 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/31 16:22:52 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ typedef struct  s_screen
 	int h;
 	int h_w;
 	int h_h;
-	int co_c;
-	int co_f;
+	//int co_c;
+	//int co_f;
 }t_screen;
 
 typedef struct s_r_casting
@@ -103,7 +103,7 @@ typedef struct s_player
 typedef struct s_cubed
 {
 	t_player player;
-	t_r_casting rayC;
+	t_r_casting ray_c;
 	t_screen screen;
 	t_img img;
 	t_window win;

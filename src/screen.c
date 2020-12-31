@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 22:59:59 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/29 23:32:12 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/31 18:10:19 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,25 @@ void draw(int x1, int y1, int y2, t_cubed *c3d, int color)
 {
 
 	int aux;
-	aux = 0;
 	//int x1;
 
-	//x1 = c3d->rayC.r_count;
-
-	while ( y1 < y2)
+	aux = 0;
+	//x1 = r_cst.r_count;
+	//write(1,"b",1);
+	//printf("\n x1 = %i,y1 = %i,y2 = %i", x1,y1,y2);
+	if(y1 < 0)
+		y1 = 0;
+	if(y2 > c3d->f.R[1])
+		y2 = c3d->f.R[1];
+	while (y1 < y2)
 	{
+		//write(1,"A",1);
 		aux = x1 + (y1 * c3d->f.R[1]);
 		c3d->img.adr[aux] = mlx_get_color_value(c3d->win.mlx, color);
 		y1++;
 	}
+	//write(1,"A",1);
+
 }
 
 int		create_trgb(int t, int r, int g, int b)
@@ -42,47 +50,42 @@ int		create_trgb(int t, int r, int g, int b)
 
 
 
-void rayCasting(t_cubed *c3d)
+void rayCasting(t_cubed *c3d)                                                   
 {
 	int wall;
-	
-	c3d->rayC.r_a = c3d->player.angle - c3d->player.h_fov;
-	wall = 0;
-	write(1,"0",1);
-	c3d->rayC.r_count = 0;
-
-	while(c3d->rayC.r_count < c3d->f.R[0])
+	double r_a;
+	t_r_casting r_cst;
+	r_a = c3d->player.angle - c3d->player.h_fov;
+	r_cst.i_ang =  c3d->player.fov / c3d->screen.w;
+	r_cst.r_count = 0;
+	r_cst.pre = 10000;
+	while(r_cst.r_count < c3d->f.R[0])
 	{
-		c3d->rayC.r_x = c3d->player.x;
-		c3d->rayC.r_y = c3d->player.y;
-		c3d->rayC.r_c = cos(to_radians(c3d->rayC.r_a)) / c3d->rayC.pre;
-		c3d->rayC.r_s = sin(to_radians(c3d->rayC.r_a)) / c3d->rayC.pre;         
+		r_cst.r_x = c3d->player.x;
+		r_cst.r_y = c3d->player.y;
+		r_cst.r_c = cos(to_radians(r_a)) / r_cst.pre;
+		r_cst.r_s = sin(to_radians(r_a)) / r_cst.pre;
+		wall = 0;
 		while (wall == 0)
 		{
-			c3d->rayC.r_x += c3d->rayC.r_c;
-			c3d->rayC.r_y += c3d->rayC.r_s;
-			wall = c3d->f.tab[(int)floor(c3d->rayC.r_y)][(int)floor(c3d->rayC.r_x)] - '0';
+			r_cst.r_x += r_cst.r_c;
+			r_cst.r_y += r_cst.r_s;
+			wall = c3d->f.tab[(int)floor(r_cst.r_y)][(int)floor(r_cst.r_x)] - '0';
 		}
-		c3d->rayC.dis = sqrt(pow(c3d->player.x - c3d->rayC.r_x, 2) + pow(c3d->player.y - c3d->rayC.r_y, 2));
-		c3d->rayC.dis = c3d->rayC.dis * cos(to_radians(c3d->rayC.r_a - c3d->player.angle));
-		c3d->rayC.w_h = floor(c3d->screen.h_w / c3d->rayC.dis);
-		//draw(0, c3d->screen.h_h - c3d->rayC.w_h, c3d, BLUE);
-		draw(c3d->rayC.r_count, 0, c3d->screen.h_h - c3d->rayC.w_h, c3d, BLUE);
-
-		//draw(c3d->screen.h_h - c3d->rayC.w_h, c3d->screen.h_h + c3d->rayC.w_h, c3d, BLUE);
-		//draw(c3d->screen.h_h + c3d->rayC.w_h, c3d->screen.h, c3d, BLUE);
-
-		c3d->rayC.r_a += c3d->rayC.i_ang;
-		c3d->rayC.r_count++;
+		r_cst.dis = sqrt(pow(c3d->player.x - r_cst.r_x, 2) + pow(c3d->player.y - r_cst.r_y, 2));
+		r_cst.dis = r_cst.dis * cos(to_radians(r_a - c3d->player.angle));
+		r_cst.w_h = floor(c3d->screen.h_h / r_cst.dis);
+		//printf("\nrayo %i", r_cst.r_count);
+		draw(r_cst.r_count, 0, (int)floor(c3d->screen.h_h - r_cst.w_h), c3d, BLUE);
+		draw(r_cst.r_count, c3d->screen.h_h - r_cst.w_h, c3d->screen.h_h + r_cst.w_h, c3d, RED);
+		draw(r_cst.r_count, c3d->screen.h_h + r_cst.w_h, c3d->screen.h, c3d,GREEN);
+		r_a += r_cst.i_ang;
+		r_cst.r_count++;
 	}
-	mlx_put_image_to_window(c3d->win.mlx, c3d->win.win , c3d->img.ptr , 0, 0);
-
 }
 
 void screen(t_cubed *c3d)
 {
-	//Hay que guardar todo en una sola
-	//cubed.rayC.r_a = cubed.player.angle - cubed.player.halfFov;
 	int b;
 	int s;
 	int e;
@@ -90,15 +93,16 @@ void screen(t_cubed *c3d)
 	c3d->img.ptr = mlx_new_image(c3d->win.mlx, c3d->f.R[0], c3d->f.R[1]);
 	c3d->img.adr = (unsigned int *)mlx_get_data_addr(c3d->img.ptr, &b, &s, &e);
 	
-	c3d->rayC.r_count = 0;
-	c3d->rayC.r_x = 0;
-	c3d->rayC.r_y = 0;
-	c3d->rayC.r_c = 0;
-	c3d->rayC.r_s = 0;
-	c3d->rayC.dis = 0;
-	c3d->rayC.w_h = 0;
+	//r_cst.r_count = 0;
+	//r_cst.r_x = 0;
+	//r_cst.r_y = 0;
+	//r_cst.r_c = 0;
+	//r_cst.r_s = 0;
+	//r_cst.dis = 0;
+	//r_cst.w_h = 0;
 
 	rayCasting(c3d);
+	mlx_put_image_to_window(c3d->win.mlx, c3d->win.win , c3d->img.ptr , 0, 0);
 	free(c3d->img.ptr);
 	free(c3d->img.adr);
 }

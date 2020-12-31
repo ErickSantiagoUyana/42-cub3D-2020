@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 17:06:56 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/29 22:48:08 by euyana-b         ###   ########.fr       */
+/*   Updated: 2020/12/31 18:08:08 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	move(t_cubed *c3d)
 		c3d->player.y = newY;
 		
 	}
-	printf("\n X %.16f",newX);
-	printf("\n Y %.16f",newY);
+	//printf("\n X %.16f",newX);
+	//printf("\n Y %.16f",newY);
 	screen(c3d);
 }
 
