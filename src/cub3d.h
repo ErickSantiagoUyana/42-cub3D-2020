@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/31 16:22:52 by euyana-b         ###   ########.fr       */
+/*   Updated: 2021/01/01 21:08:22 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_player
 	double y;
 	double angle;
 	double move;
+	double rot;
 
 }t_player;
 
@@ -119,7 +120,7 @@ int		read_file_cub(t_file *file, char *f_cub);
 //int		t_floor_ceiling(t_file *file, char *line, char type, int k);
 void	print_errors_file(int i);
 void	screen(t_cubed *cubed);
-void	move(t_cubed *cubed);
+void	move(t_cubed *cubed, int type);
 int		keys(int key,t_cubed *cubed);
 double  to_radians(double degree);
 

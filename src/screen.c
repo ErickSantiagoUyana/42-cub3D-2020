@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 22:59:59 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/31 18:10:19 by euyana-b         ###   ########.fr       */
+/*   Updated: 2021/01/02 10:33:35 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ double  to_radians(double degree)
 	return (degree * M_PI / 180);
 }
 
-void draw(int x1, int y1, int y2, t_cubed *c3d, int color)
+void draw(int y1, int y2, t_cubed *c3d, int color)
 {
 
 	int aux;
-	//int x1;
+	int x1;
 
 	aux = 0;
-	//x1 = r_cst.r_count;
-	//write(1,"b",1);
-	//printf("\n x1 = %i,y1 = %i,y2 = %i", x1,y1,y2);
+	x1 = c3d->ray_c.r_count;
+	write(1,"b",1);
+	printf("\n x1 = %i,y1 = %i,y2 = %i", x1,y1,y2);
 	if(y1 < 0)
 		y1 = 0;
 	if(y2 > c3d->f.R[1])
@@ -57,9 +57,10 @@ void rayCasting(t_cubed *c3d)
 	t_r_casting r_cst;
 	r_a = c3d->player.angle - c3d->player.h_fov;
 	r_cst.i_ang =  c3d->player.fov / c3d->screen.w;
-	r_cst.r_count = 0;
+	//c3d->ray_c.r_count = 0;
 	r_cst.pre = 10000;
-	while(r_cst.r_count < c3d->f.R[0])
+	
+	while(c3d->ray_c.r_count < c3d->f.R[0])
 	{
 		r_cst.r_x = c3d->player.x;
 		r_cst.r_y = c3d->player.y;
@@ -76,11 +77,11 @@ void rayCasting(t_cubed *c3d)
 		r_cst.dis = r_cst.dis * cos(to_radians(r_a - c3d->player.angle));
 		r_cst.w_h = floor(c3d->screen.h_h / r_cst.dis);
 		//printf("\nrayo %i", r_cst.r_count);
-		draw(r_cst.r_count, 0, (int)floor(c3d->screen.h_h - r_cst.w_h), c3d, BLUE);
-		draw(r_cst.r_count, c3d->screen.h_h - r_cst.w_h, c3d->screen.h_h + r_cst.w_h, c3d, RED);
-		draw(r_cst.r_count, c3d->screen.h_h + r_cst.w_h, c3d->screen.h, c3d,GREEN);
+		draw(0, (int)floor(c3d->screen.h_h - r_cst.w_h), c3d, BLUE);
+		draw(c3d->screen.h_h - r_cst.w_h, c3d->screen.h_h + r_cst.w_h, c3d, RED);
+		draw(c3d->screen.h_h + r_cst.w_h, c3d->screen.h, c3d,GREEN);
 		r_a += r_cst.i_ang;
-		r_cst.r_count++;
+		c3d->ray_c.r_count++;
 	}
 }
 
@@ -100,7 +101,7 @@ void screen(t_cubed *c3d)
 	//r_cst.r_s = 0;
 	//r_cst.dis = 0;
 	//r_cst.w_h = 0;
-
+	c3d->ray_c.r_count = 0;
 	rayCasting(c3d);
 	mlx_put_image_to_window(c3d->win.mlx, c3d->win.win , c3d->img.ptr , 0, 0);
 	free(c3d->img.ptr);
