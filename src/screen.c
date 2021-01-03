@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 22:59:59 by euyana-b          #+#    #+#             */
-/*   Updated: 2021/01/02 10:33:35 by euyana-b         ###   ########.fr       */
+/*   Updated: 2021/01/02 11:30:10 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,7 @@ void screen(t_cubed *c3d)
 	c3d->img.ptr = mlx_new_image(c3d->win.mlx, c3d->f.R[0], c3d->f.R[1]);
 	c3d->img.adr = (unsigned int *)mlx_get_data_addr(c3d->img.ptr, &b, &s, &e);
 	
-	//r_cst.r_count = 0;
-	//r_cst.r_x = 0;
-	//r_cst.r_y = 0;
-	//r_cst.r_c = 0;
-	//r_cst.r_s = 0;
-	//r_cst.dis = 0;
-	//r_cst.w_h = 0;
+	//printf("\nfile R0 5 %i", c3d->f.R[0]);
 	c3d->ray_c.r_count = 0;
 	rayCasting(c3d);
 	mlx_put_image_to_window(c3d->win.mlx, c3d->win.win , c3d->img.ptr , 0, 0);

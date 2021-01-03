@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 20:20:35 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/31 17:02:56 by euyana-b         ###   ########.fr       */
+/*   Updated: 2021/01/02 11:29:11 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,20 @@
 void init_struct_ray(t_cubed *c3d)
 {
 	
-	
-	//c3d->screen.w = 0;
-	//printf("dasd %s",c3d->f.S);
-	//c3d->screen.w = a;
-	//c3d->screen.w = c3d->f.R[1];
-	//c3d->screen.h_w = c3d->screen.w / 2;
-	//c3d->screen.h_h = c3d->screen.h / 2;
-	c3d->player.fov = 60;
-	//c3d->rayC.i_ang = c3d->player.fov / c3d->screen.w;
+	c3d->screen.w = c3d->f.R[0];
+	c3d->screen.h = c3d->f.R[1];
+	c3d->screen.h_h = c3d->screen.w / 2;
+	c3d->screen.h_w = c3d->screen.h / 2;
 
-	//c3d->rayC.delay = 30;
-	//c3d->rayC.pre= 64;
-	c3d->player.x = 1;
-	c3d->player.y = 1;
+	c3d->player.fov = 60;
+	c3d->player.h_fov = c3d->player.fov / 2;
+	c3d->player.x = 2;
+	c3d->player.y = 2;
 	c3d->player.angle = 90;
 	c3d->player.move = 0.3;
+	c3d->player.rot = 5.0;
 	c3d->player.h_fov = c3d->player.fov / 2;
-	//c3d->rayC.w_h = 0;
-	//c3d->screen.co_c = 
+	
 }
 
 void	init_structs(t_cubed *c3d)

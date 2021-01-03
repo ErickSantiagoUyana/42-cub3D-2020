@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 13:36:30 by klever            #+#    #+#             */
-/*   Updated: 2021/01/01 21:10:24 by euyana-b         ###   ########.fr       */
+/*   Updated: 2021/01/02 11:29:45 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ int	main(int ac, char **av)
 	t_cubed c3d;
 	
 	init_structs(&c3d);
-	
-	//init_struct_ray(&c3d);
-
 	print_errors_file(read_file_cub(&c3d.f, av[1]));
+	init_struct_ray(&c3d);
+
+	printf("\nfile R0 0 %i", c3d.f.R[0]);
+
+	printf("\nscreen h 1 %i", c3d.screen.h);
 	//Init windows
 	c3d.win.mlx = mlx_init();
 
-	c3d.screen.w = c3d.f.R[0];
+	/*c3d.screen.w = c3d.f.R[0];
 	c3d.screen.h = c3d.f.R[1];
 	c3d.screen.h_h = c3d.screen.w / 2;
 	c3d.screen.h_w = c3d.screen.h / 2;
@@ -39,7 +41,7 @@ int	main(int ac, char **av)
 	c3d.player.angle = 90;
 	c3d.player.move = 0.3;
 	c3d.player.rot = 5.0;
-	c3d.player.h_fov = c3d.player.fov / 2;
+	c3d.player.h_fov = c3d.player.fov / 2;*/
 	
 	c3d.win.win = mlx_new_window(c3d.win.mlx, c3d.f.R[0], c3d.f.R[1], "cub3D");
 	screen(&c3d);
