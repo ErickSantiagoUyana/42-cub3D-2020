@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 16:48:30 by euyana-b          #+#    #+#             */
-/*   Updated: 2020/12/29 20:21:31 by euyana-b         ###   ########.fr       */
+/*   Updated: 2021/01/03 21:12:21 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		sum_flags(t_file *file)
 	}
 	return (aux);
 }
-
 
 void	print_file(t_file *file)
 {

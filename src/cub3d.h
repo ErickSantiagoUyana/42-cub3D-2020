@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 12:03:13 by euyana-b          #+#    #+#             */
-/*   Updated: 2021/01/01 21:08:22 by euyana-b         ###   ########.fr       */
+/*   Updated: 2021/01/03 21:48:11 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ typedef struct  s_screen
 	int h;
 	int h_w;
 	int h_h;
-	//int co_c;
-	//int co_f;
+	int co_c;
+	int co_f;
 }t_screen;
 
 typedef struct s_r_casting
 {
 	double i_ang;
-	int pre;
+	//int pre;
 	int delay;
 	int r_count;
 	double r_x;
@@ -98,7 +98,6 @@ typedef struct s_player
 	double angle;
 	double move;
 	double rot;
-
 }t_player;
 
 typedef struct s_cubed
@@ -111,20 +110,22 @@ typedef struct s_cubed
 	t_file f;
 }t_cubed;
 
+//utils_read_file.c
 int		sum_flags(t_file *file);
-void	init_structs(t_cubed *c3d);
+//init_structs.c
+void	init_struct_file(t_cubed *c3d);
+void	init_struct_screen(t_cubed *c3d);
+void	init_struct_player(t_cubed *c3d);
+//main.c
 int		read_file_cub(t_file *file, char *f_cub);
-//int		type(t_file *file, char *line);
-//int		t_resolution(t_file *file, char *line, int k);
-//int		t_sprites(t_file *file, char *line, char type, int k);
-//int		t_floor_ceiling(t_file *file, char *line, char type, int k);
+//print_errors.c
 void	print_errors_file(int i);
+//screen.c
 void	screen(t_cubed *cubed);
-void	move(t_cubed *cubed, int type);
+//keys.c
 int		keys(int key,t_cubed *cubed);
-double  to_radians(double degree);
-
-
-
+//utils_screen.c
+double	to_radians(double degree);
+int		create_trgb(int t, int r, int g, int b);
 
 #endif
