@@ -6,7 +6,7 @@
 /*   By: euyana-b <euyana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 13:36:30 by klever            #+#    #+#             */
-/*   Updated: 2021/01/03 21:46:03 by euyana-b         ###   ########.fr       */
+/*   Updated: 2021/02/08 20:00:11 by euyana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 	
 	//Init windows
 	c3d.win.mlx = mlx_init();
-	c3d.win.win = mlx_new_window(c3d.win.mlx, c3d->screen.w, c3d->screen.h, "cub3D");
+	c3d.win.win = mlx_new_window(c3d.win.mlx, c3d.screen.w, c3d.screen.h, "cub3D");
 	screen(&c3d);
 	mlx_key_hook(c3d.win.win,keys, &c3d);
 	mlx_loop(c3d.win.mlx);
